@@ -1,0 +1,26 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="         http://www.springframework.org/schema/beans          http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="baseDAO" abstract="true">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="departmentDAO" class="com.luis.wms.dao.impl.DapartmentDAOImpl" parent="baseDAO"/>
+
+    <bean id="employeeDAO" class="com.luis.wms.dao.impl.EmployeeDAOImpl" parent="baseDAO"/>
+
+    <bean id="permissionDAO" class="com.luis.wms.dao.impl.PermissionDAOImpl" parent="baseDAO"/>
+
+    <bean id="roleDAO" class="com.luis.wms.dao.impl.RoleDAOImpl" parent="baseDAO"/>
+
+    <bean id="systemMenuDAO" class="com.luis.wms.dao.impl.SystemMenuDAOImpl" parent="baseDAO"/>
+    <bean id="brandDAO" class="com.luis.wms.dao.impl.BrandDAOImpl" parent="baseDAO"/>
+    <bean id="supplierDAO" class="com.luis.wms.dao.impl.SupplierDAOImpl" parent="baseDAO"/>
+    <bean id="productDAO" class="com.luis.wms.dao.impl.ProductDAOImpl" parent="baseDAO"/>
+    <bean id="orderBillDAO" class="com.luis.wms.dao.impl.OrderBillDAOImpl" parent="baseDAO"/>
+    <bean id="depotDAO" class="com.luis.wms.dao.impl.DepotDAOImpl" parent="baseDAO"/>
+    <bean id="stockIncomeBillDAO" class="com.luis.wms.dao.impl.StockIncomeBillDAOImpl" parent="baseDAO"/>
+    <bean id="productStockDAO" class="com.luis.wms.dao.impl.ProductStockDAOImpl" parent="baseDAO"/>
+    <bean id="clientDAO" class="com.luis.wms.dao.impl.ClientDAOImpl" parent="baseDAO"/>
+    <bean id="stockOutcomeBillDAO" class="com.luis.wms.dao.impl.StockOutcomeBillDAOImpl" parent="baseDAO"/>
+    <bean id="chartDAO" class="com.luis.wms.dao.impl.ChartDAOImpl" parent="baseDAO"/>
+<bean id="saleAccountDAO" class="com.luis.wms.dao.impl.SaleAccountDAOImpl" parent="baseDAO"/></beans>

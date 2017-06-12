@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.ui.theme" value="simple" />
+	<package name="default" extends="struts-default" namespace="/">
+		<!-- 注册拦截器 -->
+		<interceptors>
+			<interceptor name="checkLogin" class="com.luis.wms.interceptor.CheckLoginMessageInterceptor" />
+			<interceptor name="checkPermission" class="com.luis.wms.interceptor.SecurityInterceptor" />
+				<!-- 自定义拦截器栈 -->
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="store">
+					<param name="operationMode">AUTOMATIC</param>
+				</interceptor-ref>
+				<interceptor-ref name="checkLogin" />
+				<interceptor-ref name="checkPermission" />
+				<interceptor-ref name="paramsPrepareParamsStack" />
+			</interceptor-stack>
+		</interceptors>
+		
+		<default-interceptor-ref name="myStack" />
+		
+		<global-results>
+			<result name="login">/login.jsp</result>
+			<result name="nopermission">/WEB-INF/views/common/nopermission.jsp</result>
+			<result name="error">/WEB-INF/views/common/error.jsp</result>
+		</global-results>
+		<!--全局的异常处理-->
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception" result="error"/>
+		</global-exception-mappings>
+
+		<action name="login" class="loginAction">
+		<interceptor-ref name="paramsPrepareParamsStack"/>
+			<result type="redirectAction">main</result>
+		</action>
+
+		<action name="main">
+			<result	>/WEB-INF/views/main.jsp</result>
+		</action>
+
+		<action name="logout" class="logoutAction">
+			<result>/login.jsp</result>
+		</action>
+
+		<action name="systemMenu_*" class="systemMenuAction" method="{1}">
+			<result name="list">/WEB-INF/views/systemMenu/list.jsp</result>
+			<result name="input">/WEB-INF/views/systemMenu/input.jsp</result>
+			<result type="redirectAction">
+				<param name="actionName">systemMenu</param>
+				<param name="qo.parentId">${qo.parentId}</param>
+			</result>
+		</action>
+
+		<action name="*_*" class="{1}Action" method="{2}">
+			<result name="list">/WEB-INF/views/{1}/list.jsp</result>
+			<result name="input">/WEB-INF/views/{1}/input.jsp</result>
+			<result name="{2}">/WEB-INF/views/{1}/{2}.jsp</result>
+			<result type="redirectAction">{1}</result>
+		</action>
+	</package>
+</struts>

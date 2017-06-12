@@ -1,0 +1,73 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="         http://www.springframework.org/schema/beans          http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="departmentAction" class="com.luis.wms.web.action.DepartmentAction" scope="prototype">
+        <property name="departmentService" ref="departmentService"/>
+    </bean>
+
+    <bean id="employeeAction" class="com.luis.wms.web.action.EmployeeAction" scope="prototype">
+        <property name="employeeService" ref="employeeService"/>
+        <property name="departmentService" ref="departmentService"/>
+        <property name="roleService" ref="roleService"/>
+    </bean>
+
+    <bean id="permissionAction" class="com.luis.wms.web.action.PermissionAction" scope="prototype">
+        <property name="permissionService" ref="permissionService"/>
+    </bean>
+
+    <bean id="roleAction" class="com.luis.wms.web.action.RoleAction" scope="prototype">
+        <property name="roleService" ref="roleService"/>
+        <property name="systemMenuService" ref="systemMenuService"/>
+        <property name="permissionService" ref="permissionService"/>
+    </bean>
+
+    <bean id="loginAction" class="com.luis.wms.web.action.LoginAction" scope="prototype">
+        <property name="employeeService" ref="employeeService"/>
+    </bean>
+
+    <bean id="logoutAction" class="com.luis.wms.web.action.LogoutAction" scope="prototype"/>
+
+    <bean id="systemMenuAction" class="com.luis.wms.web.action.SystemMenuAction" scope="prototype">
+        <property name="systemMenuService" ref="systemMenuService"/>
+    </bean>
+    <bean id="brandAction" class="com.luis.wms.web.action.BrandAction" scope="prototype">
+        <property name="brandService" ref="brandService"/>
+    </bean>
+    <bean id="supplierAction" class="com.luis.wms.web.action.SupplierAction" scope="prototype">
+        <property name="supplierService" ref="supplierService"/>
+    </bean>
+    <bean id="productAction" class="com.luis.wms.web.action.ProductAction" scope="prototype">
+        <property name="productService" ref="productService"/>
+        <property name="brandService" ref="brandService"/>
+    </bean>
+    <bean id="orderBillAction" class="com.luis.wms.web.action.OrderBillAction" scope="prototype">
+        <property name="orderBillService" ref="orderBillService"/>
+        <property name="supplierService" ref="supplierService"/>
+    </bean>
+    <bean id="depotAction" class="com.luis.wms.web.action.DepotAction" scope="prototype">
+        <property name="depotService" ref="depotService"/>
+    </bean>
+    <bean id="stockIncomeBillAction" class="com.luis.wms.web.action.StockIncomeBillAction" scope="prototype">
+        <property name="stockIncomeBillService" ref="stockIncomeBillService"/>
+        <property name="depotService" ref="depotService"/>
+    </bean>
+    <bean id="productStockAction" class="com.luis.wms.web.action.ProductStockAction" scope="prototype">
+        <property name="productStockService" ref="productStockService"/>
+        <property name="brandService" ref="brandService"/>
+        <property name="depotService" ref="depotService"/>
+    </bean>
+    <bean id="clientAction" class="com.luis.wms.web.action.ClientAction" scope="prototype">
+        <property name="clientService" ref="clientService"/>
+    </bean>
+    <bean id="stockOutcomeBillAction" class="com.luis.wms.web.action.StockOutcomeBillAction" scope="prototype">
+        <property name="stockOutcomeBillService" ref="stockOutcomeBillService"/>
+        <property name="depotService" ref="depotService"/>
+        <property name="clientService" ref="clientService"/>
+    </bean>
+    <bean id="chartAction" class="com.luis.wms.web.action.ChartAction" scope="prototype">
+        <property name="chartService" ref="chartService"/>
+        <property name="brandService" ref="brandService"/>
+        <property name="clientService" ref="clientService"/>
+        <property name="supplierService" ref="supplierService"/>
+    </bean>
+</beans>
